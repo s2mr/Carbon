@@ -1,6 +1,7 @@
 import UIKit
 
 /// An updater for managing to perform reload data to render data to the `UITableView`.
+@MainActor
 open class UITableViewReloadDataUpdater<Adapter: UITableViewAdapter>: Updater {
     /// Create a new updater.
     public init() {}

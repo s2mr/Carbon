@@ -1,7 +1,8 @@
 import UIKit
 
 /// Represents a container that can render a component.
-public protocol ComponentRenderable: class {
+@MainActor
+public protocol ComponentRenderable: AnyObject {
     /// The container view to be render a component.
     var componentContainerView: UIView { get }
 }

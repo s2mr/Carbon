@@ -29,7 +29,7 @@ public extension ComponentWrapping {
     /// Returns a new instance of `Content`.
     ///
     /// - Returns: A new `Content` instance.
-    @inlinable
+    @MainActor @inlinable
     func renderContent() -> Wrapped.Content {
         return wrapped.renderContent()
     }
@@ -38,7 +38,7 @@ public extension ComponentWrapping {
     ///
     /// - Parameter:
     ///   - content: An instance of `Content` laid out on the element of list UI.
-    @inlinable
+    @MainActor @inlinable
     func render(in content: Wrapped.Content) {
         wrapped.render(in: content)
     }
@@ -55,7 +55,7 @@ public extension ComponentWrapping {
     /// - Returns: The referencing size of content to render on the list UI.
     ///            If returns nil, the element of list UI falls back to its default size
     ///            like `UITableView.rowHeight` or `UICollectionViewFlowLayout.itemSize`.
-    @inlinable
+    @MainActor @inlinable
     func referenceSize(in bounds: CGRect) -> CGSize? {
         return wrapped.referenceSize(in: bounds)
     }
@@ -82,7 +82,7 @@ public extension ComponentWrapping {
     ///   - content: An instance of content laid out on the element.
     ///
     /// - Returns: A `Bool` value indicating whether the component should be render again.
-    @inlinable
+    @MainActor @inlinable
     func shouldRender(next: Self, in content: Wrapped.Content) -> Bool {
         return wrapped.shouldRender(next: next.wrapped, in: content)
     }
@@ -94,7 +94,7 @@ public extension ComponentWrapping {
     /// - Parameters:
     ///   - content: An instance of content to be laid out on top of element.
     ///   - container: A container view to layout content.
-    @inlinable
+    @MainActor @inlinable
     func layout(content: Wrapped.Content, in container: UIView) {
         wrapped.layout(content: content, in: container)
     }
@@ -105,6 +105,7 @@ public extension ComponentWrapping {
     ///   - content: An instance of content.
     ///
     /// - Returns: A `CGSize` value represents a natural size of the passed content.
+    @MainActor
     func intrinsicContentSize(for content: Wrapped.Content) -> CGSize {
         return wrapped.intrinsicContentSize(for: content)
     }
@@ -113,7 +114,7 @@ public extension ComponentWrapping {
     ///
     /// - Parameter:
     ///   - content: An instance of content getting into display area.
-    @inlinable
+    @MainActor @inlinable
     func contentWillDisplay(_ content: Wrapped.Content) {
         wrapped.contentWillDisplay(content)
     }
@@ -122,7 +123,7 @@ public extension ComponentWrapping {
     ///
     /// - Parameter:
     ///   - content: An instance of content going out from display area.
-    @inlinable
+    @MainActor @inlinable
     func contentDidEndDisplay(_ content: Wrapped.Content) {
         wrapped.contentDidEndDisplay(content)
     }

@@ -1,4 +1,5 @@
 /// Represents an updater that manages the updation for target.
+@MainActor
 public protocol Updater {
     /// A type that represents a target to be updated for render given data.
     associatedtype Target: AnyObject

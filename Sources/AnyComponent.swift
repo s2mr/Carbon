@@ -57,7 +57,7 @@ public struct AnyComponent: Component {
     /// - Returns: The referencing size of content to render on the list UI.
     ///            If returns nil, the element of list UI falls back to its default size
     ///            like `UITableView.rowHeight` or `UICollectionViewFlowLayout.itemSize`.
-    @inlinable
+    @MainActor @inlinable
     public func referenceSize(in bounds: CGRect) -> CGSize? {
         return box.referenceSize(in: bounds)
     }
@@ -152,15 +152,30 @@ internal protocol AnyComponentBox {
     var base: Any { get }
     var reuseIdentifier: String { get }
 
+    @MainActor
     func renderContent() -> Any
+
+    @MainActor
     func render(in content: Any)
+
+    @MainActor
     func referenceSize(in bounds: CGRect) -> CGSize?
+
+    @MainActor
     func layout(content: Any, in container: UIView)
+
+    @MainActor
     func intrinsicContentSize(for content: Any) -> CGSize
+
     func shouldContentUpdate(with next: AnyComponentBox) -> Bool
+
+    @MainActor 
     func shouldRender(next: AnyComponentBox, in content: Any) -> Bool
 
+    @MainActor
     func contentWillDisplay(_ content: Any)
+
+    @MainActor
     func contentDidEndDisplay(_ content: Any)
 }
 
@@ -184,12 +199,12 @@ internal struct ComponentBox<Base: Component>: AnyComponentBox {
         baseComponent = base
     }
 
-    @inlinable
+    @MainActor @inlinable
     func renderContent() -> Any {
         return baseComponent.renderContent()
     }
 
-    @inlinable
+    @MainActor @inlinable
     func render(in content: Any) {
         guard let content = content as? Base.Content else { return }
 

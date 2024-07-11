@@ -1,6 +1,8 @@
 import UIKit
+import DifferenceKit
 
 /// An updater for managing diffing updates to render data to the `UICollectionView`.
+@MainActor
 open class UICollectionViewUpdater<Adapter: UICollectionViewAdapter>: Updater {
     /// A Bool value indicating whether that enable diffing animation. Default is true.
     open var isAnimationEnabled = true

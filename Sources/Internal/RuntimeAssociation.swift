@@ -1,6 +1,6 @@
 import ObjectiveC
 
-internal final class RuntimeAssociation<Value> {
+internal final class RuntimeAssociation<Value>: @unchecked Sendable {
     private let key = UnsafeMutablePointer<UInt8>.allocate(capacity: 1)
     private let defaultValue: () -> Value
 

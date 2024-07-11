@@ -43,12 +43,14 @@ public protocol Component {
     /// Returns a new instance of `Content`.
     ///
     /// - Returns: A new `Content` instance.
+    @MainActor
     func renderContent() -> Content
 
     /// Render properties into the content.
     ///
     /// - Parameter:
     ///   - content: An instance of `Content` laid out on the element of list UI.
+    @MainActor
     func render(in content: Content)
 
     // MARK: - Rendering - optional
@@ -68,6 +70,7 @@ public protocol Component {
     /// - Returns: The referencing size of content to render on the list UI.
     ///            If returns nil, the element of list UI falls back to its default size
     ///            like `UITableView.rowHeight` or `UICollectionViewFlowLayout.itemSize`.
+    @MainActor
     func referenceSize(in bounds: CGRect) -> CGSize?
 
     /// Returns a `Bool` value indicating whether the content should be reloaded.
@@ -89,6 +92,7 @@ public protocol Component {
     ///   - content: An instance of content laid out on the element.
     ///
     /// - Returns: A `Bool` value indicating whether the component should be render again.
+    @MainActor
     func shouldRender(next: Self, in content: Content) -> Bool
 
     /// Layout the content on top of element of the list UI.
@@ -98,6 +102,7 @@ public protocol Component {
     /// - Parameters:
     ///   - content: An instance of content to be laid out on top of element.
     ///   - container: A container view to layout content.
+    @MainActor
     func layout(content: Content, in container: UIView)
 
     /// The natural size for the passed content.
@@ -106,6 +111,7 @@ public protocol Component {
     ///   - content: An instance of content.
     ///
     /// - Returns: A `CGSize` value represents a natural size of the passed content.
+    @MainActor
     func intrinsicContentSize(for content: Content) -> CGSize
 
     // MARK: - Lifecycle - optional
@@ -114,12 +120,14 @@ public protocol Component {
     ///
     /// - Parameter:
     ///   - content: An instance of content getting into display area.
+    @MainActor
     func contentWillDisplay(_ content: Content)
 
     /// Invoked every time of after a component went out from visible area.
     ///
     /// - Parameter:
     ///   - content: An instance of content going out from display area.
+    @MainActor
     func contentDidEndDisplay(_ content: Content)
 }
 
@@ -196,6 +204,7 @@ public extension Component where Content: UIView {
     ///   - content: An instance of content to be laid out on top of element.
     ///   - container: A container view to layout content.
     ///                Default is laid out with edge constraints.
+    @MainActor
     func layout(content: Content, in container: UIView) {
         container.addSubviewWithEdgeConstraints(content)
     }
@@ -206,6 +215,7 @@ public extension Component where Content: UIView {
     ///   - content: An instance of content.
     ///
     /// - Returns: A `CGSize` value represents a natural size of the passed content.
+    @MainActor
     func intrinsicContentSize(for content: Content) -> CGSize {
         return content.intrinsicContentSize
     }
@@ -218,6 +228,7 @@ public extension Component where Content: UIViewController {
     ///   - content: An instance of content to be laid out on top of element.
     ///   - container: A container view to layout content.
     ///                Default is laid out with edge constraints.
+    @MainActor
     func layout(content: Content, in container: UIView) {
         container.addSubviewWithEdgeConstraints(content.view)
     }
@@ -228,12 +239,14 @@ public extension Component where Content: UIViewController {
     ///   - content: An instance of content.
     ///
     /// - Returns: A `CGSize` value represents a natural size of the passed content.
+    @MainActor
     func intrinsicContentSize(for content: Content) -> CGSize {
         return content.view.intrinsicContentSize
     }
 }
 
 private extension UIView {
+    @MainActor
     func addSubviewWithEdgeConstraints(_ view: UIView) {
         view.translatesAutoresizingMaskIntoConstraints = false
         addSubview(view)

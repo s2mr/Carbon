@@ -2,7 +2,7 @@
 // swiftlint:disable function_parameter_count
 
 /// The custom parameter attribute that constructs cells from multi-statement closures.
-@_functionBuilder
+@resultBuilder
 public struct CellsBuilder: CellsBuildable {
     @usableFromInline
     internal var cellNodes: [CellNode]

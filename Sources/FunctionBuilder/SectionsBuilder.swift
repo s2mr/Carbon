@@ -2,7 +2,7 @@
 // swiftlint:disable function_parameter_count
 
 /// The custom parameter attribute that constructs sections from multi-statement closures.
-@_functionBuilder
+@resultBuilder
 public struct SectionsBuilder: SectionsBuildable {
     @usableFromInline
     internal var sections: [Section]

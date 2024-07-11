@@ -1,6 +1,8 @@
 import UIKit
+import DifferenceKit
 
 /// An updater for managing diffing updates to render data to the `UITableView`.
+@MainActor
 open class UITableViewUpdater<Adapter: UITableViewAdapter>: Updater {
     /// An animation for section deletions. Default is fade.
     open var deleteSectionsAnimation = UITableView.RowAnimation.fade

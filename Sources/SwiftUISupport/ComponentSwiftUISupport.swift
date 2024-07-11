@@ -1,4 +1,4 @@
-#if canImport(SwiftUI) && canImport(Combine)
+#if canImport(SwiftUI) && !(os(iOS) && (arch(i386) || arch(arm)))
 
 import SwiftUI
 
@@ -37,6 +37,30 @@ private struct ComponentRepresenting<C: Component>: UIViewRepresentable {
     func updateUIView(_ uiView: UIComponentView, context: Context) {
         uiView.render(component: AnyComponent(component))
         proxy.uiView = uiView
+    }
+
+    @available(iOS 16.0, *)
+    func sizeThatFits(
+        _ proposal: ProposedViewSize,
+        uiView: UIComponentView,
+        context: Context
+    ) -> CGSize? {
+        if let width = proposal.width, width.isFinite {
+            uiView.bounds.size.width = width
+        }
+        if let height = proposal.height, height.isFinite {
+            uiView.bounds.size.height = height
+        }
+
+        if uiView.intrinsicContentSize != CGSize(width: UIView.noIntrinsicMetric, height: UIView.noIntrinsicMetric) {
+            return uiView.intrinsicContentSize
+        }
+
+        return uiView.systemLayoutSizeFitting(
+            proposal.replacingUnspecifiedDimensions(by: UIView.layoutFittingCompressedSize),
+            withHorizontalFittingPriority: .required,
+            verticalFittingPriority: .fittingSizeLevel
+        )
     }
 }
 

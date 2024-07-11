@@ -17,7 +17,7 @@ final class UITableViewUpdaterTests: XCTestCase {
 
     func testPrepare() {
         let updater = MockTableViewUpdater()
-        let adapter = MockTableViewAdapter()
+        let adapter = MockTableViewAdapter(data: [])
         let tableView = MockTableView()
         updater.prepare(target: tableView, adapter: adapter)
 
@@ -28,7 +28,7 @@ final class UITableViewUpdaterTests: XCTestCase {
 
     func testReloadDataFallbackIfNotInViewHierarchy() {
         let updater = MockTableViewUpdater()
-        let adapter = MockTableViewAdapter()
+        let adapter = MockTableViewAdapter(data: [])
         let tableView = MockTableView()
 
         performAsyncTests(
@@ -44,7 +44,7 @@ final class UITableViewUpdaterTests: XCTestCase {
 
     func testReloadDataFallbackIfOverAnimatableChangeCount() {
         let updater = MockTableViewUpdater()
-        let adapter = MockTableViewAdapter()
+        let adapter = MockTableViewAdapter(data: [])
         let tableView = MockTableView().addingToWindow()
         let sourceData = [
             Section(id: 0)
@@ -71,7 +71,7 @@ final class UITableViewUpdaterTests: XCTestCase {
 
     func testNopAndCompletion() {
         let updater = MockTableViewUpdater()
-        let adapter = MockTableViewAdapter()
+        let adapter = MockTableViewAdapter(data: [])
         let tableView = MockTableView().addingToWindow()
         let data = [Section(id: TestID.a)]
 
@@ -91,7 +91,7 @@ final class UITableViewUpdaterTests: XCTestCase {
 
     func testDifferentialUpdates() {
         let updater = MockTableViewUpdater()
-        let adapter = MockTableViewAdapter()
+        let adapter = MockTableViewAdapter(data: [])
         let tableView = MockTableView().addingToWindow()
 
         // Rendering visible components is no needed in this test.
@@ -123,7 +123,7 @@ final class UITableViewUpdaterTests: XCTestCase {
 
     func testAlwaysRenderVisibleComponents() {
         let updater = MockTableViewUpdater()
-        let adapter = MockTableViewAdapter()
+        let adapter = MockTableViewAdapter(data: [])
         let tableView = MockTableView().addingToWindow()
 
         let visible = (

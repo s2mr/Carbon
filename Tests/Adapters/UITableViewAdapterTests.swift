@@ -3,7 +3,7 @@ import XCTest
 
 final class UITableViewAdapterTests: XCTestCase {
     func testNumberOfSections() {
-        let adapter = UITableViewAdapter()
+        let adapter = UITableViewAdapter(data: [])
         adapter.data = [
             Section(id: TestID.a),
             Section(id: TestID.b),
@@ -14,7 +14,7 @@ final class UITableViewAdapterTests: XCTestCase {
     }
 
     func testNumberOfRowsInSection() {
-        let adapter = UITableViewAdapter()
+        let adapter = UITableViewAdapter(data: [])
         adapter.data = [
             Section(
                 id: TestID.a,
@@ -36,7 +36,7 @@ final class UITableViewAdapterTests: XCTestCase {
     }
 
     func testCellForRow() {
-        let adapter = UITableViewAdapter()
+        let adapter = UITableViewAdapter(data: [])
         let component = A.Component()
         adapter.data = [
             Section(
@@ -61,7 +61,7 @@ final class UITableViewAdapterTests: XCTestCase {
     }
 
     func testViewForHeader() {
-        let adapter = UITableViewAdapter()
+        let adapter = UITableViewAdapter(data: [])
         let component = A.Component()
         adapter.data = [
             Section(
@@ -86,7 +86,7 @@ final class UITableViewAdapterTests: XCTestCase {
     }
 
     func testViewForFooter() {
-        let adapter = UITableViewAdapter()
+        let adapter = UITableViewAdapter(data: [])
         let component = A.Component()
         adapter.data = [
             Section(
@@ -111,7 +111,7 @@ final class UITableViewAdapterTests: XCTestCase {
     }
 
     func testHeightForRow() {
-        let adapter = UITableViewAdapter()
+        let adapter = UITableViewAdapter(data: [])
         let tableView = UITableView()
         let referenceSize = CGSize(width: 100, height: 200)
         let defaultHeight: CGFloat = 300
@@ -135,7 +135,7 @@ final class UITableViewAdapterTests: XCTestCase {
     }
 
     func testEstimatedHeightForRow() {
-        let adapter = UITableViewAdapter()
+        let adapter = UITableViewAdapter(data: [])
         let tableView = UITableView()
         let referenceSize = CGSize(width: 100, height: 200)
         let defaultHeight: CGFloat = 300
@@ -159,7 +159,7 @@ final class UITableViewAdapterTests: XCTestCase {
     }
 
     func testHeightForHeader() {
-        let adapter = UITableViewAdapter()
+        let adapter = UITableViewAdapter(data: [])
         let tableView = UITableView()
         let referenceSize = CGSize(width: 100, height: 200)
         let defaultHeight: CGFloat = 300
@@ -181,7 +181,7 @@ final class UITableViewAdapterTests: XCTestCase {
     }
 
     func testEstimatedHeightForHeader() {
-        let adapter = UITableViewAdapter()
+        let adapter = UITableViewAdapter(data: [])
         let tableView = UITableView()
         let referenceSize = CGSize(width: 100, height: 200)
         let defaultHeight: CGFloat = 300
@@ -203,7 +203,7 @@ final class UITableViewAdapterTests: XCTestCase {
     }
 
     func testHeightForFooter() {
-        let adapter = UITableViewAdapter()
+        let adapter = UITableViewAdapter(data: [])
         let tableView = UITableView()
         let referenceSize = CGSize(width: 100, height: 200)
         let defaultHeight: CGFloat = 300
@@ -225,7 +225,7 @@ final class UITableViewAdapterTests: XCTestCase {
     }
 
     func testEstimatedHeightForFooter() {
-        let adapter = UITableViewAdapter()
+        let adapter = UITableViewAdapter(data: [])
         let tableView = UITableView()
         let referenceSize = CGSize(width: 100, height: 200)
         let defaultHeight: CGFloat = 300
@@ -247,7 +247,7 @@ final class UITableViewAdapterTests: XCTestCase {
     }
 
     func testDidSelect() {
-        let adapter = UITableViewAdapter()
+        let adapter = UITableViewAdapter(data: [])
         let tableView = UITableView()
         let indexPath = IndexPath(row: 0, section: 0)
         let node = CellNode(MockIdentifiableComponent(id: TestID.a))
@@ -274,7 +274,7 @@ final class UITableViewAdapterTests: XCTestCase {
     }
 
     func testDisplaying() {
-        let adapter = UITableViewAdapter()
+        let adapter = UITableViewAdapter(data: [])
         let tableView = UITableView()
         let headerComponent = MockComponent()
         let cellComponent = MockIdentifiableComponent(id: TestID.a)
@@ -309,7 +309,7 @@ final class UITableViewAdapterTests: XCTestCase {
     }
 
     func testCustomCell() {
-        let adapter = MockCustomTableViewAdapter()
+        let adapter = MockCustomTableViewAdapter(data: [])
         let component = A.Component()
         adapter.data = [
             Section(
@@ -346,7 +346,7 @@ final class UITableViewAdapterTests: XCTestCase {
     }
 
     func testViewForHeaderFooter() {
-        let adapter = MockCustomTableViewAdapter()
+        let adapter = MockCustomTableViewAdapter(data: [])
         let component = A.Component()
         adapter.data = [
             Section(

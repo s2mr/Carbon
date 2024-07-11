@@ -7,6 +7,7 @@ import UIKit
 /// Attention : In UIKit, if inheriting the @objc class which using generics, the delegate and dataSource
 ///             are don't work properly, so this class doesn't use generics, and also the class inherited
 ///             this class shouldn't use generics.
+@MainActor
 open class UITableViewAdapter: NSObject, Adapter {
     /// The data to be rendered in the list UI.
     public var data: [Section]
@@ -18,7 +19,7 @@ open class UITableViewAdapter: NSObject, Adapter {
     ///
     /// - Parameters:
     ///   - data: An initial data to be rendered.
-    public init(data: [Section] = []) {
+    public init(data: [Section]) {
         self.data = data
     }
 

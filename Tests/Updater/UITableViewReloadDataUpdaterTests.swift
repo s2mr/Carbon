@@ -5,7 +5,7 @@ import DifferenceKit
 final class UITableViewReloadDataUpdaterTests: XCTestCase {
     func testPrepare() {
         let updater = MockTableViewReloadDataUpdater()
-        let adapter = MockTableViewAdapter()
+        let adapter = MockTableViewAdapter(data: [])
         let tableView = MockTableView()
         updater.prepare(target: tableView, adapter: adapter)
 
@@ -16,7 +16,7 @@ final class UITableViewReloadDataUpdaterTests: XCTestCase {
 
     func testPerformUpdates() {
         let updater = MockTableViewReloadDataUpdater()
-        let adapter = MockTableViewAdapter()
+        let adapter = MockTableViewAdapter(data: [])
         let tableView = MockTableView()
 
         updater.performUpdates(target: tableView, adapter: adapter, data: [Section(id: TestID.a)])
